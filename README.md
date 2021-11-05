@@ -7,7 +7,8 @@ Code repositoty for the paper:
 **Out-of-Domain Human Mesh Reconstruction via Dynamic Bilevel Online Adaptation**
 
 Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
-[Paper](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [Project Page]
+
+[[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [Project Page]
 
 ## Get Started
 

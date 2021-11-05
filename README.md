@@ -7,6 +7,7 @@ Code repositoty for the paper:
 **Out-of-Domain Human Mesh Reconstruction via Dynamic Bilevel Online Adaptation**
 
 Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
+[Paper](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [Project Page]
 
 ## Get Started
 
@@ -24,11 +25,7 @@ Install the requirements using `miniconda`:
 conda env create -f dynaboa-env.yaml
 ```
 
-Download required file:
-
-```
-unzip xxx.tar.gz -o data
-```
+Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and move rename to `data` folder.
 
 
 

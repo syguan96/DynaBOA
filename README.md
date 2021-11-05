@@ -47,7 +47,7 @@ bash run_on_3dpw.sh
 | [Mesh Graphormer](https://github.com/microsoft/MeshGraphormer) |   #PS    |   45.6   |   74.7   |   87.7   |
 | DynaBOA (Ours)                                               |   #PS    | **40.4** | **65.5** | **82.0** |
 
-<img src="/Users/guanshanyan/Desktop/qualitative_res1.png" alt="qualitative results" style="zoom:50%;" />
+<img src="asseets/qualitative_res1.png" alt="qualitative results" style="zoom:50%;" />
 
 ## Todo
 

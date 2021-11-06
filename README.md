@@ -26,7 +26,7 @@ Install the requirements using `miniconda`:
 conda env create -f dynaboa-env.yaml
 ```
 
-Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and move rename to `data` folder.
+Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and rename it to `data` folder.
 
 
 
@@ -45,7 +45,7 @@ bash run_on_3dpw.sh
 | [Mesh Graphormer](https://github.com/microsoft/MeshGraphormer) |   #PS    |   45.6   |   74.7   |   87.7   |
 | DynaBOA (Ours)                                               |   #PS    | **40.4** | **65.5** | **82.0** |
 
-<img src="asseets/qualitative_res1.png" alt="qualitative results" style="zoom:50%;" />
+<img src="assets/qualitative_res1.png" alt="qualitative results" style="zoom:50%;" />
 
 ## Todo
 

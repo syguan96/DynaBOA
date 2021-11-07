@@ -14,9 +14,9 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
   <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01.gif" width="100%" />
 </p>
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="32%" />
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="32%" /> 
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="32%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="33%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="33%" /> 
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="33%" />
 </p>
 
 ## Get Started

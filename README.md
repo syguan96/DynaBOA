@@ -10,8 +10,9 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 
 [[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [[Project Page]](https://sites.google.com/view/dynaboa)
 
+
 ![Skating](https://github.com/syguan96/ImageHost/blob/main/seq10_c01.gif)
-![Skating](https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif)
+![Skating](https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif)![Skating](https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif)![Skating](https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif)
 
 ## Get Started
 

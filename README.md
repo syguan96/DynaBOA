@@ -10,7 +10,8 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 
 [[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [[Project Page]](https://sites.google.com/view/dynaboa)
 
-**Description**: We focus on reconstructing human mesh from out-of-domain target videos. To solve it, we bilevel optimize the source model on target images in an online fashion. 
+## Description**
+We focus on reconstructing human mesh from out-of-domain target videos. To solve it, we bilevel optimize the source model on target images in an online fashion. 
 
 In our experiments, we train a source model (termed as BaseModel) on Human 3.6M. Below is the results of the adapted model on the Internet videos with various camera parameters, motion, etc.
 

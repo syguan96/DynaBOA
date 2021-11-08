@@ -23,7 +23,7 @@ In our experiments, we train a source model (termed as BaseModel) on Human 3.6M.
 </p>
 <p float="center">
   <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="49%" />
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="49%" /> 
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="49%" /> 
 </p>
 
 

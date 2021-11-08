@@ -16,15 +16,15 @@ We focus on reconstructing human mesh from out-of-domain target videos. To solve
 In our experiments, we train a source model (termed as BaseModel) on Human 3.6M. Below is the results of the adapted model on the Internet videos with various camera parameters, motion, etc.
 
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01-v2-bigger.gif" width="98%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01-v2-bigger.gif" width="99%" />
 </p>
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq09_c01.gif" width="98%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq09_c01.gif" width="99%" />
 </p>
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="32%" />
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="32%" /> 
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="32%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="33%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="33%" /> 
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="33%" />
 </p>
 
 

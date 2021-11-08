@@ -11,13 +11,21 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 [[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [[Project Page]](https://sites.google.com/view/dynaboa)
 
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01.gif" width="98%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="45%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="32%" /> 
 </p>
 <p float="center">
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq02_c01.gif" width="32%" />
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="45%" />
   <img src="https://github.com/syguan96/ImageHost/blob/main/seq04_c01.gif" width="32%" /> 
-  <img src="https://github.com/syguan96/ImageHost/blob/main/seq07_c01.gif" width="32%" />
 </p>
+
+<p float="center">
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01-v2-bigger.gif" width="98%" />
+</p>
+<p float="center">
+  <img src="https://github.com/syguan96/ImageHost/blob/main/seq09_c01.gif" width="98%" />
+</p>
+
 
 ## Get Started
 

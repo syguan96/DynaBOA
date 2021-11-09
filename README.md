@@ -1,6 +1,6 @@
 # DynaBOA
 
-
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/out-of-domain-human-mesh-reconstruction-via/3d-human-pose-estimation-on-3dpw)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-3dpw?p=out-of-domain-human-mesh-reconstruction-via)
 
 Code repositoty for the paper:
 
@@ -8,12 +8,11 @@ Code repositoty for the paper:
 
 Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 
-[[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [[Project Page]](https://sites.google.com/view/dynaboa)
+[[Paper]](https://arxiv.org/abs/2111.04017) [[Project Page]](https://sites.google.com/view/dynaboa)
 
 ## Description
-We focus on reconstructing human mesh from out-of-domain target videos. To solve it, we bilevel optimize the source model on target images in an online fashion. 
+We focus on reconstructing human mesh from out-of-domain videos. In our experiments, we train a source model (termed as BaseModel) on Human 3.6M. To produce accurate human mesh on out-of-domain images, we optimize the BaseModel on target images via DynaBOA at test time. Below are the comparison results between BaseModel and the adapted model on the Internet videos with various camera parameters, motion, etc.
 
-In our experiments, we train a source model (termed as BaseModel) on Human 3.6M. Below is the results of the adapted model on the Internet videos with various camera parameters, motion, etc.
 
 <p float="center">
   <img src="https://github.com/syguan96/ImageHost/blob/main/seq10_c01-v2-bigger.gif" width="99%" />

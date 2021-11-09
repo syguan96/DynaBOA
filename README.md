@@ -43,8 +43,9 @@ Install the requirements using `miniconda`:
 conda env create -f dynaboa-env.yaml
 ```
 
-Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and rename it to `data` folder.
+Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and rename it to `data` folder. Additionally, download sampled human 3.6M data from [this link](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing) and unzip it to `data/retrieval_res`
 
+Download Human 3.6M using this [tool](https://github.com/kotaro-inoue/human3.6m_downloader), and then change the corresponding path at Line 700 in `dynaboa.py`.
 
 
 ## Running on the 3DPW

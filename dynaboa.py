@@ -24,7 +24,9 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import Dataset
 from torch.utils.tensorboard import SummaryWriter
+from torchvision.transforms import Normalize
 
+from utils.dataprocess import crop,transform, rot_aa
 import config
 import constants
 from model import SMPL, hmr
@@ -86,26 +88,6 @@ parser.add_argument('--interval', type=int, default=5, help='interval of tempora
 parser.add_argument('--motionloss_weight', type=float, default=0.8)
 
 
-import h5py
-class SourceDataset(Dataset):
-    def __init__(self):
-        super(SourceDataset, self).__init__()
-        self.datainfos = {}
-        fin = h5py.File('/dev/shm/h36m_part.h5', 'r')
-        for k,v in fin.items():
-            self.datainfos[k] = np.array(v)
-        self.keys = self.datainfos.keys()
-        print('finish loading data')
-    
-    def __getitem__(self, index):
-        item = {}
-        for k in self.datainfos.keys():
-            item[k] = torch.from_numpy(self.datainfos[k][index]).float()
-        return item
-        
-    
-    def __len__(self,):
-        return self.datainfos['pose'].shape[0]
 
 class Adaptor():
     def __init__(self, options):
@@ -126,7 +108,7 @@ class Adaptor():
             self.load_h36_cluster_res()
 
         if self.options.retrieval:
-            self.h36m_dataset = SourceDataset()
+            self.h36m_dataset = SourceDataset(datapath='data/retrieval_res/h36m_random_sample_center_10_10.pt')
 
         # set model
         self.set_model_optim()
@@ -143,7 +125,7 @@ class Adaptor():
 
     def get_h36m_data(self, indice):
         item_i = self.h36m_dataset[indice]
-        return {k:v.unsqueeze(0) for k,v in item_i.items()}
+        return {k:v for k,v in item_i.items()}
 
     def load_h36_cluster_res(self,):
         ########## 0.1
@@ -710,6 +692,116 @@ class Adaptor():
     def write_summaries(self, losses):
         for loss_name, val in losses.items():
             self.summary_writer.add_scalar(loss_name, val, self.global_step)
+
+
+class SourceDataset(Dataset):
+    def __init__(self,datapath):
+        super(SourceDataset, self).__init__()
+        self.img_dir = '/data/syguan/human_datasets/Human3.6M/human36m_full_raw'
+        self.data = joblib.load(datapath)
+        self.normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
+
+        # == parse data == #
+        self.imgname = self.data['imgname']
+        # import ipdb;ipdb.set_trace()
+        self.scale = self.data['scale']
+        self.center = self.data['center']
+        self.pose = self.data['pose'].astype(np.float)
+        self.betas = self.data['shape'].astype(np.float)
+        self.pose_3d = self.data['S']
+        keypoints_gt = self.data['part']
+        # keypoints_openpose = self.data['openpose']
+        keypoints_openpose = np.zeros((len(self.imgname), 25, 3))
+        self.keypoints = np.concatenate([keypoints_openpose, keypoints_gt], axis=1)
+        # Get gender data, if available
+        try:
+            gender = self.data['gender']
+            self.gender = np.array([0 if str(g) == 'm' else 1 for g in gender]).astype(np.int32)
+        except KeyError:
+            self.gender = -1*np.ones(len(self.imgname)).astype(np.int32)
+        self.length = self.scale.shape[0]
+    
+    def __getitem__(self,index):
+        item = {}
+        scale = self.scale[index].copy()
+        center = self.center[index].copy()
+        keypoints = self.keypoints[index].copy()
+        pose = self.pose[index].copy()
+        betas = self.betas[index].copy()
+
+        # Load image
+        imgname = os.path.join(self.img_dir, self.imgname[index])
+        img = self.read_image(imgname)
+        item['oriimage'] = img.copy()
+        orig_shape = np.array(img.shape)[:2]
+
+        # no augmentation
+        rot, sc = 0, 1
+
+        item['keypoints'] = torch.from_numpy(self.j2d_processing(keypoints, center, sc*scale, rot)).float().unsqueeze(0)
+        img = self.rgb_processing(img, center, sc*scale, rot)
+        item['oriimage2'] = [img.copy(), center, sc*scale, rot]
+        
+        img = torch.from_numpy(img).float()
+        img = self.normalize_img(img)
+
+        item['img'] = img.unsqueeze(0)
+        item['pose'] = torch.from_numpy(self.pose_processing(pose, rot)).float().unsqueeze(0)
+        item['betas'] = torch.from_numpy(betas).float().unsqueeze(0)
+        item['imgname'] = imgname
+        S = self.pose_3d[index].copy()
+        item['pose_3d'] = torch.from_numpy(self.j3d_processing(S, rot)).float().unsqueeze(0)
+        # item['scale'] = float(sc * scale)
+        # item['center'] = center.astype(np.float32)
+        # item['orig_shape'] = orig_shape
+        # item['rot_angle'] = np.float32(rot)
+        # item['sample_index'] = index
+        return item
+
+    def __len__(self):
+        return len(self.imgname)
+
+    def j2d_processing(self, kp, center, scale, r):
+        """Process gt 2D keypoints and apply all augmentation transforms."""
+        nparts = kp.shape[0]
+        for i in range(nparts):
+            kp[i,0:2] = transform(kp[i,0:2]+1, center, scale, [constants.IMG_RES, constants.IMG_RES], rot=r)
+        # convert to normalized coordinates
+        kp[:,:-1] = 2.*kp[:,:-1]/constants.IMG_RES - 1.
+        kp = kp.astype('float32')
+        return kp
+        
+    def read_image(self, imgname):
+        img = cv2.imread(imgname)[:,:,::-1].copy().astype(np.float32)
+        return img
+
+    def rgb_processing(self, rgb_img, center, scale, rot):
+        """Process rgb image and do augmentation."""
+        rgb_img = crop(rgb_img.copy(), center, scale, [constants.IMG_RES, constants.IMG_RES], rot=rot)
+        rgb_img = np.transpose(rgb_img.astype('float32'),(2,0,1))/255.0
+        return rgb_img
+
+    def pose_processing(self, pose, r):
+        """Process SMPL theta parameters  and apply all augmentation transforms."""
+        # rotation or the pose parameters
+        pose[:3] = rot_aa(pose[:3], r)
+        # (72),float
+        pose = pose.astype('float32')
+        return pose
+    
+    def j3d_processing(self, S, r):
+        """Process gt 3D keypoints and apply all augmentation transforms."""
+        # in-plane rotation
+        rot_mat = np.eye(3)
+        if not r == 0:
+            rot_rad = -r * np.pi / 180
+            sn,cs = np.sin(rot_rad), np.cos(rot_rad)
+            rot_mat[0,:2] = [cs, -sn]
+            rot_mat[1,:2] = [sn, cs]
+        S[:, :-1] = np.einsum('ij,kj->ki', rot_mat, S[:, :-1]) 
+        S = S.astype('float32')
+        return S
+
 
 if __name__ == '__main__':
     options = parser.parse_args()

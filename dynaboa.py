@@ -710,7 +710,6 @@ class SourceDataset(Dataset):
         self.betas = self.data['shape'].astype(np.float)
         self.pose_3d = self.data['S']
         keypoints_gt = self.data['part']
-        # keypoints_openpose = self.data['openpose']
         keypoints_openpose = np.zeros((len(self.imgname), 25, 3))
         self.keypoints = np.concatenate([keypoints_openpose, keypoints_gt], axis=1)
         # Get gender data, if available
@@ -751,11 +750,6 @@ class SourceDataset(Dataset):
         item['imgname'] = imgname
         S = self.pose_3d[index].copy()
         item['pose_3d'] = torch.from_numpy(self.j3d_processing(S, rot)).float().unsqueeze(0)
-        # item['scale'] = float(sc * scale)
-        # item['center'] = center.astype(np.float32)
-        # item['orig_shape'] = orig_shape
-        # item['rot_angle'] = np.float32(rot)
-        # item['sample_index'] = index
         return item
 
     def __len__(self):

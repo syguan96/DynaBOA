@@ -8,7 +8,7 @@ Code repositoty for the paper:
 
 Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 
-[[Paper]](https://drive.google.com/file/d/1b6e3rMrVn_xNhM-MitqpLtulARdl4M9F/view?usp=sharing) [[Project Page]](https://sites.google.com/view/dynaboa)
+[[Paper]](https://arxiv.org/abs/2111.04017) [[Project Page]](https://sites.google.com/view/dynaboa)
 
 ## Description
 We focus on reconstructing human mesh from out-of-domain target videos. To solve it, we bilevel optimize the source model on target images in an online fashion. 

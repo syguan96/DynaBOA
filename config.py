@@ -5,6 +5,7 @@ Things you need to change: *_ROOT that indicate the path to each dataset
 """
 
 PW3D_ROOT = '/data/syguan/human_datasets/3dpw'
+H36M_ROOT = '/data/syguan/human_datasets/Human3.6M/human36m_full_raw'
 
 # Output folder to save test/train npz files
 DATASET_NPZ_PATH = 'data/dataset_extras'

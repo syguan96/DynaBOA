@@ -10,6 +10,7 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang, Bingbing Ni, Xiaokang Yang
 
 [[Paper]](https://arxiv.org/abs/2111.04017) [[Project Page]](https://sites.google.com/view/dynaboa)
 
+
 ## Description
 We focus on reconstructing human mesh from out-of-domain videos. In our experiments, we train a source model (termed as *BaseModel*) on Human 3.6M. To produce accurate human mesh on out-of-domain images, we optimize the BaseModel on target images via DynaBOA at test time. Below are the comparison results between BaseModel and the adapted model on the Internet videos with various camera parameters, motion, etc.
 
@@ -36,16 +37,38 @@ Clone this repo:
 git clone https://github.com/syguan96/DynaBOA.git
 ```
 
-Install the requirements using `miniconda`:
+Install required packages:
 
 ```
-conda env create -f dynaboa-env.yaml
+conda env create -n DynaBOA-env python=3.6
+pip3 install torch==1.8.2+cu111 torchvision==0.9.2+cu111 torchaudio==0.8.2 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+pip install -r requirements.txt
+install spacepy following https://spacepy.github.io/install_linux.html
 ```
 
-Download required file from [this link](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing). Then unzip the file and rename it to `data` folder. Additionally, download sampled human 3.6M data from [this link](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing) and unzip it to `data/retrieval_res`
+Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing) and [File 2](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing). After unzip files, rename `File 1` to `data` and move the files in `File 2` to `data/retrieval_res`. Finally them should look like this:
+```
+|-- data
+|   |--dataset_extras
+|   |   |--3dpw_0_0.npz
+|   |   |--3dpw_0_1.npz
+|   |   |--...
+|   |--retrieval_res
+|   |   |--...
+|   |--smpl
+|   |   |--...
+|   |--spin_data
+|   |   |--gmm_08.pkl
+|   |--basemodel.pt
+|   |--J_regressor_extra.npy
+|   |--J_regressor_h36m.npy
+|   |--smpl_mean_params.npz
+```
 
-Download Human 3.6M using this [tool](https://github.com/kotaro-inoue/human3.6m_downloader), and then change the corresponding path at Line 700 in `dynaboa.py`.
-
+Download Human 3.6M using this [tool](https://github.com/kotaro-inoue/human3.6m_downloader), and then extract images by:
+```
+python process_data.py --dataset h36m
+```
 
 ## Running on the 3DPW
 
@@ -66,8 +89,9 @@ bash run_on_3dpw.sh
 
 ## Todo
 
-- [ ] DynaBOA for MPI-INF-3DHP and SURREAL
 - [ ] DynaBOA for the internet data.
+- [ ] DynaBOA for MPI-INF-3DHP and SURREAL
 
 
-
+## Acknowledgement
+We borrow some code from [SPIN](https://github.com/nkolot/SPIN) and [VIBE](https://github.com/mkocabas/VIBE). [Learn2learn](https://github.com/learnables/learn2learn) is useful to realize bilevel optimization.

@@ -681,7 +681,7 @@ class Adaptor():
         images = images + torch.tensor([0.485, 0.456, 0.406], device=images.device).reshape(1,3,1,1)
         images = np.transpose(images.cpu().numpy(), (0,2,3,1))
         for i in range(vts.shape[0]):
-            oriimg = cv2.imread(os.path.join('/data/syguan/human_datasets/3dpw', name[i]))
+            oriimg = cv2.imread(os.path.join(config.PW3D_ROOT, name[i]))
             ori_h, ori_w = oriimg.shape[:2]
             bbox = bbox.cpu().numpy()
             ori_pred_cams = convert_crop_cam_to_orig_img(cam_trans, bbox, ori_w, ori_h)
@@ -697,7 +697,7 @@ class Adaptor():
 class SourceDataset(Dataset):
     def __init__(self,datapath):
         super(SourceDataset, self).__init__()
-        self.img_dir = '/data/syguan/human_datasets/Human3.6M/human36m_full_raw'
+        self.img_dir = config.H36M_ROOT
         self.data = joblib.load(datapath)
         self.normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
 

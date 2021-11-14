@@ -39,13 +39,13 @@ def get_person_height(j2d):
     person_height = np.linalg.norm(max_j - min_j)
     return person_height
 
-def custom_data_extract(in_path):    
-    perm_idx = get_perm_idxs('spin', 'coco') # spin joints is body25+smpl joints(24)
+def internet_data_extract(in_path):    
+    # spin joints is body25+smpl joints(24). 
+    perm_idx = get_perm_idxs('spin', 'coco') 
 
-    seqs = ['seq01_c01', 'seq02_c01', 'seq03_c01', 'seq04_c01', 'seq07_c01', 'seq10_c01']#, 'seq11_c01']
+    seqs = [os.path.basename(name)[:-5] for name in glob.glob(os.path.join(in_path, '*.json'))]#['seq01_c01', 'seq02_c01', 'seq03_c01', 'seq04_c01', 'seq07_c01', 'seq10_c01']
     seqs.sort()
     for seq in seqs:
-        # data to be recorded
         imagenames = []
         scales, centers = [], []
         j2ds = []
@@ -57,8 +57,8 @@ def custom_data_extract(in_path):
             kps2d = np.array(annot['keypoints']).reshape(-1,3)
             score = annot['score']
             height = get_person_height(kps2d)
+            # filter out low-quality detection results and the person with only a small region.
             if score < 2.5 or height < 250:
-                # print(seq, imagename)
                 continue
             assert kps2d.shape == (17, 3), print(kps2d.shape)
 

@@ -1,5 +1,5 @@
 from utils.data_preprocess import h36m_train_extract
-from utils.data_preprocess import custom_data_extract
+from utils.data_preprocess import internet_data_extract
 import config
 import argparse
 
@@ -11,6 +11,6 @@ if __name__ == '__main__':
     if args.dataset == 'h36m':
         h36m_train_extract(config.H36M_ROOT, training_split=False, extract_img=False)
     elif args.dataset == 'internet':
-        custom_data_extract('supp_assets/bilibili')
+        internet_data_extract(config.InternetData_ROOT)
     else:
         print('Not implemented.')

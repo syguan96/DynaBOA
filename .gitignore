@@ -4,5 +4,8 @@ data
 *.pth
 *.pt
 *.h5
+*.png
 __py**__
 .history
+supp_assets
+exps

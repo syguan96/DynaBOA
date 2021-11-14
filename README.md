@@ -73,7 +73,8 @@ python process_data.py --dataset h36m
 
 ---
 ## Running on the 3DPW
-
+Download the [3DPW](https://virtualhumans.mpi-inf.mpg.de/3DPW/) dataset. Then edit `PW3D_ROOT` in the config.py.
+Then, run:
 ```bash
 bash run_on_3dpw.sh
 ```
@@ -126,4 +127,4 @@ bash run_on_internet.sh
 - [ ] DynaBOA for MPI-INF-3DHP and SURREAL
 
 ## Acknowledgement
-We borrow some code from [SPIN](https://github.com/nkolot/SPIN) and [VIBE](https://github.com/mkocabas/VIBE). [Learn2learn](https://github.com/learnables/learn2learn) is useful to realize bilevel optimization.
+We borrow some code from [SPIN](https://github.com/nkolot/SPIN) and [VIBE](https://github.com/mkocabas/VIBE). [Learn2learn](https://github.com/learnables/learn2learn) is useful to implement bilevel optimization.

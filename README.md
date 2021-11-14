@@ -2,7 +2,7 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/out-of-domain-human-mesh-reconstruction-via/3d-human-pose-estimation-on-3dpw)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-3dpw?p=out-of-domain-human-mesh-reconstruction-via)
 
-Code repositoty for the paper:
+Code repository for the paper:
 
 **Out-of-Domain Human Mesh Reconstruction via Dynamic Bilevel Online Adaptation**
 
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 install spacepy following https://spacepy.github.io/install_linux.html
 ```
 
-Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing) and [File 2](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing). After unzip files, rename `File 1` to `data` and move the files in `File 2` to `data/retrieval_res`. Finally them should look like this:
+Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing) and [File 2](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing). After unzipping files, rename `File 1` to `data` and move the files in `File 2` to `data/retrieval_res`. Finally, they should look like this:
 ```
 |-- data
 |   |--dataset_extras
@@ -93,7 +93,7 @@ bash run_on_3dpw.sh
 ## Running on Internet Videos
 
 #### Prepare Data
-Place videos into the a folder, and record it by `InternetData_ROOT` in `config.py`.
+Place videos into a folder, and record folder path by `InternetData_ROOT` in `config.py`.
 Then extract images by:
 ```bash
 python vid2img.py
@@ -101,14 +101,14 @@ python vid2img.py
 The images are saved into `InternetData_ROOT/images`.
 
 #### Detect 2D keypoints.
-We need 2D keypoint annotations to calculate a bounding box around the person and supply contraints on the optimization process. We use AlphaPose to detect 2D keypoints of the person. The install instruction can be found [here](https://github.com/MVIG-SJTU/AlphaPose/blob/master/docs/INSTALL.md).
+We need 2D keypoint annotations to calculate a bounding box around the person and apply constraints to the optimization process. We use AlphaPose to detect the 2D keypoints of the person. The install instruction can be found [here](https://github.com/MVIG-SJTU/AlphaPose/blob/master/docs/INSTALL.md).
 After installing AlphaPose, you can use it to detect 2D keypoints. For example:
 ```bash
 # go to the dictionary of Alphapose
-python scripts/demo_inference.py --cfg configs/coco/resnet/256x192_res152_lr1e-3_1x-duc.yaml --checkpoint pretrained_models/fast_421_res152_256x192.pth --indir $IMAGES_DIR --outdir $RES_DIR --save_video --save_img --flip --min_box_area 300
+python scripts/demo_inference.py --indir $IMAGES_DIR --outdir $RES_DIR --cfg configs/coco/resnet/256x192_res152_lr1e-3_1x-duc.yaml --checkpoint pretrained_models/fast_421_res152_256x192.pth --save_video --save_img --flip --min_box_area 300
 ``` 
-`$IMAGES_DIR` is the dictionary of images to be evaluated, and `$RES_DIR` is the dictionay to save detected 2D keypoints. 
-OpenPose is also a accurate toolbox to detect 2D keypoints. If you use OpenPose, you should detect `BODY_25` format keypoints. 
+`$IMAGES_DIR` is the dictionary of images to be evaluated, and `$RES_DIR` is the dictionary to save detected 2D keypoints. 
+OpenPose also can detect accurate 2D keypoints. If you use OpenPose, you should detect `BODY_25` format keypoints. 
 
 #### Process Data
 ```bash

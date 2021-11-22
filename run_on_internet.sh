@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=1 python dynaboa_internet.py --expdir exps --expname internet --dataset internet \
+CUDA_VISIBLE_DEVICES=0 python dynaboa_internet.py --expdir exps --expname internet --dataset internet \
                                             --motionloss_weight 0.8 \
                                             --retrieval 1 \
                                             --dynamic_boa 1 \

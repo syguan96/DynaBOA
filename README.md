@@ -42,7 +42,7 @@ Install required packages:
 ```bash
 conda create -n DynaBOA-env python=3.6
 conda activate DynaBOA-env
-pip3 install torch==1.8.2+cu111 torchvision==0.9.2+cu111 torchaudio==0.8.2 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
 pip install -r requirements.txt
 install spacepy following https://spacepy.github.io/install_linux.html
 ```

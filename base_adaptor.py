@@ -1,8 +1,5 @@
 """
-boa
-seperate version, i.e. the batch in inner loop is different from the outer loop.
-more than that, we reweight the loss weight for the boa. 
-The reweight scheme is inspired from the focal loss.
+Dynaboa
 """
 
 import os

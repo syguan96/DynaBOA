@@ -57,7 +57,7 @@ def pw3d_extract(dataset_path, out_path, debug=False):
     """
     only extract openpose detected dataset.
     """
-    idx = get_perm_idxs(src='spin', dst='3dpw')
+    idx = [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     # annots we use
     imagenames_seq = []
     genders_seq = []
@@ -114,7 +114,7 @@ def pw3d_extract(dataset_path, out_path, debug=False):
             # collect openpose 2d keypoints
             j49s = np.zeros_like(gt_j2ds)
             # import ipdb;ipdb.set_trace()
-            j49s[:,idx] = openpose_j2d[:,:14]
+            j49s[:,idx] = openpose_j2d
 
             # calculate bbox
             centers, scales = [], []

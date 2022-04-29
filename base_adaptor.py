@@ -3,6 +3,7 @@ Dynaboa
 """
 
 import os
+import errno
 # os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
 import cv2
@@ -532,8 +533,13 @@ class SourceDataset(Dataset):
         return kp
         
     def read_image(self, imgname):
-        img = cv2.imread(imgname)[:,:,::-1].copy().astype(np.float32)
-        return img
+        img = cv2.imread(imgname)
+        if not img:
+            raise FileNotFoundError(
+                errno.ENOENT, 
+                os.strerror(errno.ENOENT), 
+                imgname)
+        return img[:, :, ::-1].copy().astype(np.float32)
 
     def rgb_processing(self, rgb_img, center, scale, rot):
         """Process rgb image and do augmentation."""

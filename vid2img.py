@@ -24,6 +24,6 @@ def video_to_images(vid_file, img_folder=None, return_info=False):
     return img_folder
 
 vid_dir = config.InternetData_ROOT
-for vid_file in glob.glob(f'{vid_dir}.mp4'):
+for vid_file in glob.glob(f'{vid_dir}/*.mp4'):
     forename = osp.basename(vid_file)[:-4]
     video_to_images(vid_file, f'{vid_dir}/images/{forename}')

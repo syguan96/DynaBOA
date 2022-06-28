@@ -18,7 +18,7 @@ class Internet_dataset(Dataset):
         super(Internet_dataset, self).__init__()
         self.imgdir = osp.join(config.InternetData_ROOT, 'images')
         self.normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
-        datanames = glob.glob(osp.join(config.InternetData_ROOT, 'seq*.npz'))
+        datanames = glob.glob(osp.join(config.InternetData_ROOT, '*.npz'))
         self.smpl_j2ds = []
         self.imgnames = []
         self.scales = []

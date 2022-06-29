@@ -47,7 +47,7 @@ pip install -r requirements.txt
 install spacepy following https://spacepy.github.io/install_linux.html
 ```
 
-Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing) and [File 2](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing). After unzipping files, rename `File 1` to `data` and move the files in `File 2` to `data/retrieval_res`. Finally, they should look like this:
+Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu2aidVwMBvbdcdGd2vgy-gR/view?usp=sharing) and [File 2](https://drive.google.com/file/d/1uekfFsWnLcKdrT6CxZ9zFQFy_ySdDaXK/view?usp=sharing). After unzipping files, rename `File 1` to `data` (ensuring you do not overwrite `gmm_08.pkl` in `./data`) and move the files in `File 2` to `data/retrieval_res`. Finally, they should look like this:
 ```
 |-- data
 |   |--dataset_extras
@@ -105,10 +105,10 @@ The images are saved into `InternetData_ROOT/images`.
 We need 2D keypoint annotations to calculate a bounding box around the person and apply constraints to the optimization process. We use AlphaPose to detect the 2D keypoints of the person. The install instruction can be found [here](https://github.com/MVIG-SJTU/AlphaPose/blob/master/docs/INSTALL.md).
 After installing AlphaPose, you can use it to detect 2D keypoints. For example:
 ```bash
-# go to the dictionary of Alphapose
+# go to the directory of Alphapose
 python scripts/demo_inference.py --indir $IMAGES_DIR --outdir $RES_DIR --cfg configs/coco/resnet/256x192_res152_lr1e-3_1x-duc.yaml --checkpoint pretrained_models/fast_421_res152_256x192.pth --save_video --save_img --flip --min_box_area 300
 ``` 
-`$IMAGES_DIR` is the dictionary of images to be evaluated, and `$RES_DIR` is the dictionary to save detected 2D keypoints. 
+`$IMAGES_DIR` is the directory of images to be evaluated, and `$RES_DIR` is the directory to save detected 2D keypoints. 
 OpenPose also can detect accurate 2D keypoints. If you use OpenPose, you should detect `BODY_25` format keypoints. 
 
 #### Process Data

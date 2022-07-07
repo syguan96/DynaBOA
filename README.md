@@ -75,12 +75,14 @@ python process_data.py --dataset h36m
 <p float="center">
 <img src="https://github.com/syguan96/ImageHost/blob/main/webcam_demo.gif" width="99%" />
 </p>
-We support run DynaBOA with web camera. Please build Openpose first. Then, try it by
+We support run DynaBOA with web camera. Please build Openpose first. Then, try it by     
+
 ```bash
 python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1
 ```
+
 If you want to run on a custumized video, you can change `capture_mode` to `video`, and specify `vid_path`.
-For example:
+For example:   
 ```bash
 python dynaboa_webcam.py --capture_mode video --vid_path $VIDPATH --use_boa 1 --dynamic_boa 1 --save_video 1
 ```

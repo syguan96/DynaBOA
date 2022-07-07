@@ -19,7 +19,7 @@ pyrender==0.1.45
 scikit-image==0.17.2
 scikit-learn==0.22
 scipy==1.5.4
-smplx==0.1.13
+smplx
 tensorboard
 tqdm==4.56.0
 transforms3d==0.3.1

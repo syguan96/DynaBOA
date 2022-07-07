@@ -68,14 +68,14 @@ class OpenposeWarper():
         return kp2d, annoted_image
 
 
-def render(vts, cam, image, bbox):
+def render(vts, cam, image, bbox, color=[205,129,98]):
     vts = vts.clone().detach().cpu().numpy()
     cam = cam.clone().detach().cpu().numpy()
     # bbox = bbox.cpu().numpy()
     ori_h, ori_w = image.shape[:2]
     ori_pred_cams = convert_crop_cam_to_orig_img(cam, bbox, ori_w, ori_h)    
     renderer = Renderer(resolution=(ori_w, ori_h), orig_img=True, wireframe=False)
-    rendered_image = renderer.render(image, vts[0], ori_pred_cams[0], color=np.array([205,129,98])/255)
+    rendered_image = renderer.render(image, vts[0], ori_pred_cams[0], color=np.array(color)/255)
     return rendered_image[:,:,::-1]
 
 

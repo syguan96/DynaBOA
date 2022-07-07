@@ -331,7 +331,7 @@ class Adaptor():
             pred_rotmat_base, pred_shape_base, pred_cam_base = self.basemodel(image, need_feature=False)
             smpl_out_base = self.decode_smpl_params(pred_rotmat_base, pred_shape_base)
             pred_vertices_base = smpl_out_base['vts']
-            res_base = {'vts_base': pred_vertices, 'cam_base': pred_cam, 'bbox_base': bbox}
+            res_base = {'vts_base': pred_vertices_base, 'cam_base': pred_cam_base}
             res.update(res_base)
 
         return res
@@ -405,15 +405,23 @@ if __name__ == '__main__':
             # online adaptation
             res = adaptor.online_adaptation(frame[:,:,::-1].copy(), kp2d)
             vertices, pred_cam, bbox = res['vts'], res['cam'], res['bbox']
-            # croped_image = res['croped_image']
-            # croped_image = tensor_to_img(croped_image)[0,:,:,::-1]
-            # croped_image = cv2.resize(croped_image, (frame.shape[1], frame.shape[0]))
+
             # rendering mesh
             rendered_image = render(vertices, pred_cam, frame[:,:,::-1].copy(), bbox)
 
             final_image = np.concatenate([annoted_image, rendered_image], axis=1)
+
+            if options.test_basemodel:
+                vertices_base, pred_cam_base = res['vts_base'], res['cam_base']
+                rendered_image_base = render(vertices_base, pred_cam_base, frame[:,:,::-1].copy(), bbox, color=[100,100,200])
+
+                final_image = np.concatenate([final_image, rendered_image_base], axis=1)
+
         except TypeError:
-            final_image = np.concatenate([annoted_image, frame], axis=1)
+            if options.test_basemodel:
+                final_image = np.concatenate([annoted_image, frame, frame], axis=1)
+            else:
+                final_image = np.concatenate([annoted_image, frame], axis=1)
 
         if options.save_video:
             if frame_idx == 0:

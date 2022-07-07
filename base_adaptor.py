@@ -95,17 +95,6 @@ class BaseAdaptor():
         h36m_batch = {k: v.to(self.device) if isinstance(v, torch.Tensor) else v for k,v in h36m_batch.items()}
         return h36m_batch
 
-
-    def feature_cos_distance(self, feat1, feat2, sim=1):
-        """
-        1: expect feat1 and feat2 to be similar
-        -1: expect feat1 and feat2 to be dissimilar
-        """
-        assert sim in [1, -1], print('sim should be -1 or 1')
-        loss = self.cosembeddingloss(feat1, feat2, sim*torch.ones(feat1.shape[0]).to(self.device))
-        return loss
-
-
     def seed_everything(self, seed):
         """
         ensure reproduction
@@ -135,9 +124,6 @@ class BaseAdaptor():
             checkpoint['model'] = {k.replace('module.', ''): v for k, v in checkpoint['model'].items()}
             self.model.load_state_dict(checkpoint['model'], strict=True)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.options.lr, betas=(self.options.beta1, self.options.beta2))
-        self.base_params = {}
-        for name, param in self.model.named_parameters():
-            self.base_params[name] = param.clone().detach()
         print('---> model and optimizer have been set')
     
 
@@ -150,7 +136,7 @@ class BaseAdaptor():
             self.imgdir = osp.join(config.InternetData_ROOT, 'images')
         self.dataloader = DataLoader(dataset, batch_size=self.options.batch_size, shuffle=False, num_workers=8)
 
-    def set_criterionn(self,):
+    def set_criterion(self,):
         self.gmm_f = MaxMixturePrior(prior_folder='data/spin_data', num_gaussians=8, dtype=torch.float32).to(self.device)
         self.cosembeddingloss = nn.CosineEmbeddingLoss().to(self.device)
 

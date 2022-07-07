@@ -71,6 +71,17 @@ Download Human 3.6M using this [tool](https://github.com/kotaro-inoue/human3.6m_
 python process_data.py --dataset h36m
 ```
 
+## New feature: support web camera
+We support run DynaBOA with web camera. Please build Openpose first. Then, try it by
+```bash
+python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1
+```
+If you want to run on a custumized video, you can change `capture_mode` to `video`, and specify `vid_path`.
+For example:
+```bash
+python dynaboa_webcam.py --capture_mode video --vid_path $VIDPATH --use_boa 1 --dynamic_boa 1 --save_video 1
+```
+
 ---
 ## Running on the 3DPW
 Download the [3DPW](https://virtualhumans.mpi-inf.mpg.de/3DPW/) dataset. Then edit `PW3D_ROOT` in the config.py.
@@ -120,12 +131,6 @@ python process_data.py --dataset internet
 ```bash
 bash run_on_internet.sh
 ```
-
-
-## Todo
-
-- [x] DynaBOA for the internet data.
-- [ ] DynaBOA for MPI-INF-3DHP and SURREAL
 
 ## Acknowledgement
 We borrow some code from [SPIN](https://github.com/nkolot/SPIN) and [VIBE](https://github.com/mkocabas/VIBE). [Learn2learn](https://github.com/learnables/learn2learn) is useful to implement bilevel optimization.

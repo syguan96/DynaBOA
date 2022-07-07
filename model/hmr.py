@@ -311,7 +311,7 @@ class HMR_ISO(nn.Module):
         pred_rotmat_fsl, pred_shape_fsl, pred_cam_fsl = self.fsl(init_pose, init_shape, init_cam, xf, n_iter, batch_size)
         return pred_rotmat_fsl, pred_shape_fsl, pred_cam_fsl, pred_rotmat_ssl, pred_shape_ssl, pred_cam_ssl
 
-def hmr(smpl_mean_params, pretrained=True, **kwargs):
+def hmr(smpl_mean_params, pretrained=False, **kwargs):
     """ Constructs an HMR model with ResNet50 backbone.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet

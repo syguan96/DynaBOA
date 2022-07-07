@@ -72,6 +72,8 @@ python process_data.py --dataset h36m
 ```
 
 ## New feature: support web camera
+https://user-images.githubusercontent.com/81640539/177723085-df3edcc4-93c7-4c90-abe1-3c9def006939.mp4
+
 We support run DynaBOA with web camera. Please build Openpose first. Then, try it by
 ```bash
 python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1

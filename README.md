@@ -11,6 +11,24 @@ Shanyan Guan, Jingwei Xu, Michelle Z. He, Yunbo Wang<sup>†</sup>, Bingbing Ni,
 [[Paper]](https://arxiv.org/abs/2111.04017) [[Project Page]](https://sites.google.com/view/dynaboa)
 
 
+
+## New feature: support web camera
+<p float="center">
+<img src="https://github.com/syguan96/ImageHost/blob/main/webcam_demo.gif" width="99%" />
+</p>
+We support run DynaBOA with web camera. Please build Openpose first. Then, try it by     
+
+```bash
+python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1
+```
+
+If you want to run on a custumized video, you can change `capture_mode` to `video`, and specify `vid_path`.
+For example:   
+```bash
+python dynaboa_webcam.py --capture_mode video --vid_path $VIDPATH --use_boa 1 --dynamic_boa 1 --save_video 1
+```
+
+
 ## Description
 We focus on reconstructing human mesh from out-of-domain videos. In our experiments, we train a source model (termed as *BaseModel*) on Human 3.6M. To produce accurate human mesh on out-of-domain images, we optimize the BaseModel on target images via DynaBOA at test time. Below are the comparison results between BaseModel and the adapted model on the Internet videos with various camera parameters, motion, etc.
 
@@ -69,22 +87,6 @@ Download required file from [File 1](https://drive.google.com/file/d/1_4GhHaiNIu
 Download Human 3.6M using this [tool](https://github.com/kotaro-inoue/human3.6m_downloader), and then extract images by:
 ```
 python process_data.py --dataset h36m
-```
-
-## New feature: support web camera
-<p float="center">
-<img src="https://github.com/syguan96/ImageHost/blob/main/webcam_demo.gif" width="99%" />
-</p>
-We support run DynaBOA with web camera. Please build Openpose first. Then, try it by     
-
-```bash
-python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1
-```
-
-If you want to run on a custumized video, you can change `capture_mode` to `video`, and specify `vid_path`.
-For example:   
-```bash
-python dynaboa_webcam.py --capture_mode video --vid_path $VIDPATH --use_boa 1 --dynamic_boa 1 --save_video 1
 ```
 
 ---

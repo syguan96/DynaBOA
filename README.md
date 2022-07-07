@@ -22,7 +22,7 @@ We support run DynaBOA with web camera. Please build Openpose first. Then, try i
 python dynaboa_webcam.py --use_boa 1 --dynamic_boa 1 --save_video 1
 ```
 
-If you want to run on a custumized video, you can change `capture_mode` to `video`, and specify `vid_path`.
+If you want to run on an in-the-wild video, you can change `capture_mode` to `video`, and specify `vid_path`.
 For example:   
 ```bash
 python dynaboa_webcam.py --capture_mode video --vid_path $VIDPATH --use_boa 1 --dynamic_boa 1 --save_video 1

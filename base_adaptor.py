@@ -63,7 +63,7 @@ class BaseAdaptor():
         self.set_dataloader()
 
         # set criterion
-        self.set_criterionn()
+        self.set_criterion()
 
         self.setup_smpl()
 
